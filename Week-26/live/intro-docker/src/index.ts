@@ -1,6 +1,8 @@
 import express from 'express'
 
-const app = express();;
+const app = express();
+
+const PORT = 3001;
 
 app.get('/', (req, res) => {
     res.json({
@@ -8,6 +10,6 @@ app.get('/', (req, res) => {
     })
 })
 
-app.listen(3000, () => {
-    console.log(`Server running on PORT 3000`)
+app.listen(PORT, () => {
+    console.log(`Server running on PORT ${PORT}`)
 })
