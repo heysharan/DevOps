@@ -39,7 +39,7 @@ app.post('/', async (req, res) => {
         })
 
         res.json({
-            message: "User Created !"
+            message: "User Created !!"
         })
     } catch (e) {
         console.error(e)

@@ -7,9 +7,13 @@ services:
       - POSTGRES_PASSWORD=mypassword123
     volumes:
       - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
   user_app:
     build:
-      network: host
       context: ./
       dockerfile: Dockerfile
 
@@ -20,6 +24,9 @@ services:
       - 3000:3000
 
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
 volumes:
   pgdata:
+
+  
