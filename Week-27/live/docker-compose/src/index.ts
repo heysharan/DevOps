@@ -8,11 +8,11 @@ const prismaClient = new PrismaClient();
 app.use(express.json())
 
 app.get('/', async (req, res) => {
-    const username = req.body
+    const username = req.body.username
     try {
-        const user = await prismaClient.user.findFirst({
+        const user = await prismaClient.user.findUnique({
             where: {
-                username: username
+                username
             }
         })
         res.json({

@@ -12,10 +12,10 @@
 ## Docker Installation
  - Install docker
  - Clone the repo
- - Start DB locally (postgres)
-    - docker run -e POSTGRES_PASSWORD=mypassword123 -d -p 5432:5432 postgres
- - Build the image - `docker build -t user_app .`
- - Start a container - `docker run -p 3000:3000 user_app`
+ - Create a network - `docker network create user_app`
+ - Start DB locally (postgres) - `docker run --name postgres --network user_app -e POSTGRES_PASSWORD=mypassword123 -d -p 5432:5432 postgres`
+ - Build the image - `docker build --network=host -t user_app .`
+ - Start a container - `docker run --network user_app -e DATABASE_URL="postgresql://postgres:mypassword123@postgres:5432/postgres" -p 3000:3000 user_app`
 
 
 ## Docker Compose Installation Steps
